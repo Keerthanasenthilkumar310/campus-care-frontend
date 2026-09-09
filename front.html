@@ -1,0 +1,3693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CampusCare | Smart Campus Management</title>
+
+<style>
+/* =========================================================
+   CAMPUSCARE - PROFESSIONAL DARK UI
+   Frontend only - HTML + CSS + JavaScript
+========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root{
+    --bg:#080b14;
+    --bg2:#0d1220;
+    --card:#111827;
+    --card2:#151d2e;
+    --border:#263247;
+
+    --text:#f5f7fb;
+    --muted:#8d99ad;
+
+    --blue:#5b8cff;
+    --blue2:#3b6df6;
+    --violet:#8b5cf6;
+    --cyan:#22d3ee;
+
+    --green:#34d399;
+    --yellow:#fbbf24;
+    --red:#fb7185;
+
+    --shadow:0 20px 50px rgba(0,0,0,.35);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter',Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+button,input,select,textarea{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.container{
+    width:90%;
+    max-width:1250px;
+    margin:auto;
+}
+
+.btn{
+    border:none;
+    padding:12px 20px;
+    border-radius:10px;
+    font-weight:700;
+    transition:.25s;
+}
+
+.btn-primary{
+    color:white;
+    background:linear-gradient(135deg,var(--blue),var(--violet));
+    box-shadow:0 8px 25px rgba(91,140,255,.25);
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 30px rgba(91,140,255,.35);
+}
+
+.btn-outline{
+    color:var(--text);
+    background:transparent;
+    border:1px solid var(--border);
+}
+
+.btn-outline:hover{
+    border-color:var(--blue);
+    color:var(--blue);
+}
+
+.section{
+    padding:90px 8%;
+}
+
+.section-label{
+    color:var(--blue);
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.section-title{
+    text-align:center;
+    max-width:720px;
+    margin:0 auto 50px;
+}
+
+.section-title h2{
+    font-size:40px;
+    margin:12px 0;
+}
+
+.section-title p{
+    color:var(--muted);
+    line-height:1.7;
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar{
+    height:76px;
+    background:rgba(8,11,20,.88);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 7%;
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:21px;
+    font-weight:800;
+}
+
+.logo-icon{
+    width:38px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:10px;
+
+    background:linear-gradient(
+        135deg,
+        var(--blue),
+        var(--violet)
+    );
+
+    box-shadow:0 8px 20px rgba(91,140,255,.3);
+}
+
+.logo span{
+    color:white;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+.nav-links a{
+    color:var(--muted);
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.nav-links a:hover{
+    color:white;
+}
+
+/* =========================================================
+   HOME / HERO
+========================================================= */
+
+.hero{
+    min-height:calc(100vh - 76px);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:80px 9%;
+
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::before{
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    background:var(--violet);
+
+    opacity:.12;
+
+    filter:blur(100px);
+
+    border-radius:50%;
+
+    top:-180px;
+    right:-100px;
+}
+
+.hero::after{
+    content:"";
+
+    position:absolute;
+
+    width:400px;
+    height:400px;
+
+    background:var(--blue);
+
+    opacity:.1;
+
+    filter:blur(100px);
+
+    border-radius:50%;
+
+    bottom:-200px;
+    left:-100px;
+}
+
+.hero-content{
+    max-width:700px;
+    position:relative;
+    z-index:2;
+}
+
+.hero-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:8px 14px;
+
+    border:1px solid rgba(91,140,255,.3);
+
+    background:rgba(91,140,255,.08);
+
+    color:#9db8ff;
+
+    border-radius:30px;
+
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.hero h1{
+    font-size:clamp(45px,6vw,76px);
+    line-height:1.03;
+    margin:25px 0;
+    letter-spacing:-3px;
+}
+
+.gradient-text{
+    background:linear-gradient(
+        90deg,
+        var(--blue),
+        var(--violet),
+        var(--cyan)
+    );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.hero-description{
+    color:var(--muted);
+    font-size:17px;
+    line-height:1.8;
+    max-width:600px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+    margin-top:35px;
+}
+
+.hero-visual{
+    width:390px;
+    position:relative;
+    z-index:2;
+}
+
+.dashboard-preview{
+    background:rgba(17,24,39,.8);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:22px;
+    box-shadow:var(--shadow);
+    backdrop-filter:blur(20px);
+    transform:rotate(2deg);
+}
+
+.preview-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:22px;
+}
+
+.preview-dots{
+    display:flex;
+    gap:5px;
+}
+
+.preview-dots span{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#475467;
+}
+
+.preview-title{
+    font-size:13px;
+    font-weight:700;
+}
+
+.preview-stats{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.preview-stat{
+    background:var(--card2);
+    border:1px solid var(--border);
+    padding:15px;
+    border-radius:13px;
+}
+
+.preview-stat small{
+    color:var(--muted);
+    font-size:10px;
+}
+
+.preview-stat h3{
+    margin-top:5px;
+}
+
+.preview-chart{
+    height:120px;
+    margin-top:15px;
+    border-radius:13px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(91,140,255,.15),
+            rgba(139,92,246,.05)
+        );
+    position:relative;
+    overflow:hidden;
+}
+
+.chart-line{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:
+        linear-gradient(
+            155deg,
+            transparent 40%,
+            rgba(91,140,255,.8) 41%,
+            rgba(91,140,255,.8) 42%,
+            transparent 43%
+        );
+}
+
+/* =========================================================
+   HOME STATS
+========================================================= */
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.stat-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:30px;
+    border-radius:16px;
+    text-align:center;
+}
+
+.stat-card h2{
+    font-size:36px;
+    background:linear-gradient(
+        90deg,
+        var(--blue),
+        var(--violet)
+    );
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.stat-card p{
+    color:var(--muted);
+    margin-top:5px;
+}
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.features-section{
+    background:var(--bg2);
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.feature-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:28px;
+    transition:.3s;
+}
+
+.feature-card:hover{
+    transform:translateY(-6px);
+    border-color:#3a4b6b;
+    box-shadow:var(--shadow);
+}
+
+.feature-icon{
+    width:50px;
+    height:50px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:13px;
+
+    background:rgba(91,140,255,.1);
+
+    font-size:22px;
+
+    margin-bottom:20px;
+}
+
+.feature-card h3{
+    margin-bottom:10px;
+}
+
+.feature-card p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+.auth-page{
+    min-height:calc(100vh - 76px);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:50px 20px;
+}
+
+.auth-card{
+    width:470px;
+    max-width:100%;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:40px;
+
+    box-shadow:var(--shadow);
+}
+
+.auth-header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.auth-header h1{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.auth-header p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+
+    padding:13px 14px;
+
+    color:var(--text);
+
+    background:#0b1120;
+
+    border:1px solid var(--border);
+
+    border-radius:9px;
+
+    outline:none;
+
+    transition:.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:var(--blue);
+    box-shadow:0 0 0 3px rgba(91,140,255,.1);
+}
+
+select option{
+    background:#111827;
+}
+
+.form-footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+    margin-top:20px;
+}
+
+.form-footer span{
+    color:var(--blue);
+    font-weight:700;
+    cursor:pointer;
+}
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.dashboard{
+    padding:45px 0 80px;
+}
+
+.dashboard-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.dashboard-header h1{
+    font-size:30px;
+    margin:7px 0;
+}
+
+.dashboard-header p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.dashboard-label{
+    color:var(--blue);
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1.5px;
+}
+
+.dashboard-stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+    margin-bottom:25px;
+}
+
+.dash-stat{
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:22px;
+    border-radius:15px;
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.dash-icon{
+    width:48px;
+    height:48px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    font-size:20px;
+}
+
+.icon-blue{
+    background:rgba(91,140,255,.12);
+}
+
+.icon-violet{
+    background:rgba(139,92,246,.12);
+}
+
+.icon-yellow{
+    background:rgba(251,191,36,.12);
+}
+
+.icon-green{
+    background:rgba(52,211,153,.12);
+}
+
+.dash-stat h2{
+    font-size:25px;
+}
+
+.dash-stat p{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:25px;
+}
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.card-header h2{
+    font-size:18px;
+}
+
+.card-header p{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:4px;
+}
+
+.link{
+    color:var(--blue);
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:20px;
+}
+
+/* =========================================================
+   COMPLAINT ITEM
+========================================================= */
+
+.complaint-item{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    padding:16px 0;
+
+    border-bottom:1px solid var(--border);
+}
+
+.complaint-item:last-child{
+    border-bottom:none;
+}
+
+.complaint-icon{
+    width:44px;
+    height:44px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:11px;
+
+    background:#18233a;
+
+    font-size:19px;
+}
+
+.complaint-info{
+    flex:1;
+}
+
+.complaint-info h3{
+    font-size:14px;
+    margin-bottom:3px;
+}
+
+.complaint-info p{
+    color:var(--muted);
+    font-size:11px;
+}
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status{
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:700;
+}
+
+.status-pending{
+    background:rgba(251,191,36,.1);
+    color:var(--yellow);
+}
+
+.status-progress{
+    background:rgba(91,140,255,.1);
+    color:#8eafff;
+}
+
+.status-resolved{
+    background:rgba(52,211,153,.1);
+    color:var(--green);
+}
+
+/* =========================================================
+   QUICK ACTIONS
+========================================================= */
+
+.quick-action{
+    display:flex;
+    align-items:center;
+    gap:13px;
+
+    padding:15px;
+
+    border:1px solid var(--border);
+
+    border-radius:11px;
+
+    margin-bottom:10px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.quick-action:hover{
+    background:#151f32;
+    border-color:#3a4b6b;
+}
+
+.quick-action-icon{
+    font-size:20px;
+}
+
+.quick-action-content{
+    flex:1;
+}
+
+.quick-action-content strong{
+    font-size:13px;
+}
+
+.quick-action-content p{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:2px;
+}
+
+/* =========================================================
+   REPORT FORM
+========================================================= */
+
+.form-page{
+    width:90%;
+    max-width:900px;
+    margin:auto;
+    padding:45px 0 80px;
+}
+
+.page-heading{
+    margin-bottom:25px;
+}
+
+.page-heading .back{
+    color:var(--blue);
+    font-size:13px;
+    cursor:pointer;
+}
+
+.page-heading h1{
+    font-size:30px;
+    margin:12px 0 5px;
+}
+
+.page-heading p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.form-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:30px;
+}
+
+.form-card h2{
+    font-size:18px;
+    margin-bottom:20px;
+}
+
+.two-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.upload-box{
+    border:1px dashed #3a4b6b;
+    border-radius:11px;
+    padding:28px;
+    text-align:center;
+    color:var(--muted);
+}
+
+.upload-box .upload-icon{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.upload-box input{
+    margin-top:15px;
+}
+
+.form-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:25px;
+}
+
+/* =========================================================
+   COMPLAINTS TABLE
+========================================================= */
+
+.filter-bar{
+    display:flex;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.filter-bar input{
+    flex:1;
+}
+
+.table-card{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:850px;
+}
+
+th,
+td{
+    text-align:left;
+    padding:16px;
+    border-bottom:1px solid var(--border);
+    font-size:12px;
+}
+
+th{
+    color:#8d99ad;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+}
+
+.view-link{
+    color:var(--blue);
+    font-weight:700;
+    cursor:pointer;
+}
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+.details-grid{
+    display:grid;
+    grid-template-columns:1.5fr 1fr;
+    gap:20px;
+}
+
+.detail-title{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.detail-title-content{
+    flex:1;
+}
+
+.detail-title h2{
+    font-size:18px;
+}
+
+.detail-title p{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:3px;
+}
+
+.detail-icon{
+    width:58px;
+    height:58px;
+    border-radius:14px;
+
+    background:#18233a;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:25px;
+}
+
+.description{
+    color:var(--muted);
+    line-height:1.7;
+    font-size:13px;
+    margin:15px 0;
+}
+
+.detail-info{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-top:25px;
+}
+
+.detail-info span{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    margin-bottom:5px;
+}
+
+.detail-info strong{
+    font-size:13px;
+}
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.timeline{
+    margin-top:25px;
+}
+
+.timeline-item{
+    display:flex;
+    gap:14px;
+    position:relative;
+    padding-bottom:25px;
+}
+
+.timeline-item:not(:last-child)::after{
+    content:"";
+
+    position:absolute;
+
+    left:15px;
+    top:32px;
+
+    height:45px;
+    width:1px;
+
+    background:#344054;
+}
+
+.timeline-dot{
+    width:32px;
+    height:32px;
+
+    border-radius:50%;
+
+    background:#202a3c;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:11px;
+    font-weight:bold;
+
+    z-index:2;
+}
+
+.timeline-item.completed .timeline-dot{
+    background:rgba(52,211,153,.12);
+    color:var(--green);
+}
+
+.timeline-item.current .timeline-dot{
+    background:rgba(91,140,255,.12);
+    color:var(--blue);
+}
+
+.timeline-content h3{
+    font-size:13px;
+}
+
+.timeline-content p{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:3px;
+}
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile-card{
+    max-width:800px;
+    margin:auto;
+}
+
+.profile-header{
+    display:flex;
+    align-items:center;
+    gap:18px;
+
+    padding-bottom:25px;
+
+    margin-bottom:25px;
+
+    border-bottom:1px solid var(--border);
+}
+
+.avatar{
+    width:72px;
+    height:72px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        var(--blue),
+        var(--violet)
+    );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:26px;
+    font-weight:800;
+}
+
+.profile-header p{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:3px;
+}
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
+.admin-badge{
+    background:rgba(139,92,246,.1);
+    color:#b79cff;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:700;
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+    position:fixed;
+
+    right:25px;
+    bottom:25px;
+
+    background:#182236;
+
+    border:1px solid #344054;
+
+    color:white;
+
+    padding:14px 18px;
+
+    border-radius:10px;
+
+    font-size:13px;
+
+    box-shadow:var(--shadow);
+
+    display:none;
+
+    z-index:5000;
+}
+
+.toast.show{
+    display:block;
+    animation:toastIn .3s ease;
+}
+
+@keyframes toastIn{
+
+    from{
+        transform:translateY(15px);
+        opacity:0;
+    }
+
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    background:#060811;
+    border-top:1px solid var(--border);
+    text-align:center;
+    padding:45px 20px;
+}
+
+footer .logo{
+    justify-content:center;
+    margin-bottom:10px;
+}
+
+footer p{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:950px){
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        padding-top:70px;
+    }
+
+    .hero-description{
+        margin:auto;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .hero-visual{
+        margin-top:30px;
+    }
+
+    .feature-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .dashboard-stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .dashboard-grid,
+    .details-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:650px){
+
+    .navbar{
+        padding:0 5%;
+    }
+
+    .nav-links a:not(.nav-login){
+        display:none;
+    }
+
+    .hero{
+        padding:60px 6%;
+    }
+
+    .hero h1{
+        font-size:44px;
+        letter-spacing:-2px;
+    }
+
+    .hero-visual{
+        width:100%;
+    }
+
+    .feature-grid,
+    .stats-grid,
+    .dashboard-stats{
+        grid-template-columns:1fr;
+    }
+
+    .two-columns{
+        grid-template-columns:1fr;
+    }
+
+    .dashboard-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
+    }
+
+    .filter-bar{
+        flex-direction:column;
+    }
+
+    .auth-card{
+        padding:28px 20px;
+    }
+
+    .section-title h2{
+        font-size:30px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- =======================================================
+     NAVBAR
+======================================================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🏫
+        </div>
+
+        <span>CampusCare</span>
+
+    </div>
+
+
+    <nav class="nav-links">
+
+        <a onclick="showPage('home')">
+            Home
+        </a>
+
+        <a onclick="scrollToFeatures()">
+            Features
+        </a>
+
+        <a onclick="showPage('login')" class="nav-login">
+            Login
+        </a>
+
+        <button
+            class="btn btn-primary"
+            onclick="showPage('register')">
+
+            Get Started
+
+        </button>
+
+    </nav>
+
+</header>
+
+
+<!-- =======================================================
+     HOME
+======================================================= -->
+
+<section id="home" class="page active">
+
+    <div class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                ✦ SMART CAMPUS MANAGEMENT
+            </div>
+
+
+            <h1>
+
+                Building a
+                <span class="gradient-text">
+                    Better Campus
+                </span>
+                Together.
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                CampusCare provides a simple and transparent way
+                for students and staff to report campus issues,
+                track their progress and create a better learning
+                environment.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <button
+                    class="btn btn-primary"
+                    onclick="showPage('register')">
+
+                    Report an Issue →
+
+                </button>
+
+
+                <button
+                    class="btn btn-outline"
+                    onclick="scrollToFeatures()">
+
+                    Explore Platform
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Dashboard preview -->
+
+        <div class="hero-visual">
+
+            <div class="dashboard-preview">
+
+                <div class="preview-top">
+
+                    <div class="preview-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="preview-title">
+                        Campus Overview
+                    </div>
+
+                </div>
+
+
+                <div class="preview-stats">
+
+                    <div class="preview-stat">
+
+                        <small>
+                            Total Issues
+                        </small>
+
+                        <h3>
+                            128
+                        </h3>
+
+                    </div>
+
+
+                    <div class="preview-stat">
+
+                        <small>
+                            Resolved
+                        </small>
+
+                        <h3 style="color:#34d399">
+                            96%
+                        </h3>
+
+                    </div>
+
+
+                    <div class="preview-stat">
+
+                        <small>
+                            Pending
+                        </small>
+
+                        <h3 style="color:#fbbf24">
+                            18
+                        </h3>
+
+                    </div>
+
+
+                    <div class="preview-stat">
+
+                        <small>
+                            In Progress
+                        </small>
+
+                        <h3 style="color:#8eafff">
+                            14
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="preview-chart">
+
+                    <div class="chart-line"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Stats -->
+
+    <section class="section">
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <h2>128+</h2>
+
+                <p>
+                    Issues Reported
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h2>96%</h2>
+
+                <p>
+                    Resolution Rate
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h2>24/7</h2>
+
+                <p>
+                    Complaint Tracking
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Features -->
+
+    <section
+        class="section features-section"
+        id="features">
+
+        <div class="section-title">
+
+            <span class="section-label">
+                PLATFORM FEATURES
+            </span>
+
+            <h2>
+                Everything Your Campus Needs
+            </h2>
+
+            <p>
+                One centralized platform to report, manage
+                and resolve campus issues efficiently.
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📝
+                </div>
+
+                <h3>
+                    Easy Reporting
+                </h3>
+
+                <p>
+                    Report classroom, electrical, plumbing,
+                    internet and other campus problems easily.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Track Progress
+                </h3>
+
+                <p>
+                    Monitor your complaint from submission
+                    until the issue is completely resolved.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🔔
+                </div>
+
+                <h3>
+                    Status Updates
+                </h3>
+
+                <p>
+                    Stay informed whenever the status of
+                    your complaint changes.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🛠️
+                </div>
+
+                <h3>
+                    Smart Management
+                </h3>
+
+                <p>
+                    Administrators can organize, assign and
+                    manage campus complaints efficiently.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🏫
+            </div>
+
+            CampusCare
+
+        </div>
+
+        <p>
+            Creating smarter campuses through technology.
+        </p>
+
+        <p style="margin-top:15px">
+            © 2026 CampusCare. All rights reserved.
+        </p>
+
+    </footer>
+
+</section>
+
+
+<!-- =======================================================
+     LOGIN
+======================================================= -->
+
+<section id="login" class="page">
+
+    <div class="auth-page">
+
+        <div class="auth-card">
+
+            <div class="auth-header">
+
+                <div
+                    class="logo"
+                    style="justify-content:center;margin-bottom:20px">
+
+                    <div class="logo-icon">
+                        🏫
+                    </div>
+
+                    CampusCare
+
+                </div>
+
+                <h1>
+                    Welcome Back
+                </h1>
+
+                <p>
+                    Sign in to access your CampusCare account.
+                </p>
+
+            </div>
+
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="you@example.com"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        required>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    style="width:100%">
+
+                    Sign In
+
+                </button>
+
+            </form>
+
+
+            <div class="form-footer">
+
+                Don't have an account?
+
+                <span onclick="showPage('register')">
+                    Create one
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     REGISTER
+======================================================= -->
+
+<section id="register" class="page">
+
+    <div class="auth-page">
+
+        <div class="auth-card">
+
+            <div class="auth-header">
+
+                <h1>
+                    Create Account
+                </h1>
+
+                <p>
+                    Join CampusCare and help improve your campus.
+                </p>
+
+            </div>
+
+
+            <form id="registerForm">
+
+                <div class="form-group">
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="Enter your full name"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        placeholder="Enter your college email"
+                        required>
+
+                </div>
+
+
+                <div class="two-columns">
+
+                    <div class="form-group">
+
+                        <label>
+                            Role
+                        </label>
+
+                        <select required>
+
+                            <option value="">
+                                Select role
+                            </option>
+
+                            <option>
+                                Student
+                            </option>
+
+                            <option>
+                                Staff
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Department
+                        </label>
+
+                        <input
+                            type="text"
+                            placeholder="CSE">
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        placeholder="Create a password"
+                        required>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    style="width:100%">
+
+                    Create Account
+
+                </button>
+
+            </form>
+
+
+            <div class="form-footer">
+
+                Already have an account?
+
+                <span onclick="showPage('login')">
+                    Sign in
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     STUDENT DASHBOARD
+======================================================= -->
+
+<section id="dashboard" class="page">
+
+    <main class="container dashboard">
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <div class="dashboard-label">
+                    STUDENT DASHBOARD
+                </div>
+
+                <h1>
+                    Welcome back 👋
+                </h1>
+
+                <p>
+                    Here's an overview of your campus activity.
+                </p>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                onclick="showPage('report')">
+
+                + Report Issue
+
+            </button>
+
+        </div>
+
+
+        <div class="dashboard-stats">
+
+            <div class="dash-stat">
+
+                <div class="dash-icon icon-blue">
+                    📋
+                </div>
+
+                <div>
+
+                    <h2>12</h2>
+
+                    <p>
+                        Total Complaints
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="dash-stat">
+
+                <div class="dash-icon icon-yellow">
+                    ⏳
+                </div>
+
+                <div>
+
+                    <h2>3</h2>
+
+                    <p>
+                        Pending
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="dash-stat">
+
+                <div class="dash-icon icon-violet">
+                    🔧
+                </div>
+
+                <div>
+
+                    <h2>2</h2>
+
+                    <p>
+                        In Progress
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="dash-stat">
+
+                <div class="dash-icon icon-green">
+                    ✓
+                </div>
+
+                <div>
+
+                    <h2>7</h2>
+
+                    <p>
+                        Resolved
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-grid">
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>
+                            Recent Complaints
+                        </h2>
+
+                        <p>
+                            Your latest reported issues
+                        </p>
+
+                    </div>
+
+                    <span
+                        class="link"
+                        onclick="showPage('complaints')">
+
+                        View all →
+
+                    </span>
+
+                </div>
+
+
+                <div class="complaint-item">
+
+                    <div class="complaint-icon">
+                        💡
+                    </div>
+
+                    <div class="complaint-info">
+
+                        <h3>
+                            Classroom Light Not Working
+                        </h3>
+
+                        <p>
+                            Block A • Room 204
+                        </p>
+
+                    </div>
+
+                    <span class="status status-pending">
+                        Pending
+                    </span>
+
+                </div>
+
+
+                <div class="complaint-item">
+
+                    <div class="complaint-icon">
+                        📶
+                    </div>
+
+                    <div class="complaint-info">
+
+                        <h3>
+                            Wi-Fi Connectivity Issue
+                        </h3>
+
+                        <p>
+                            Library • First Floor
+                        </p>
+
+                    </div>
+
+                    <span class="status status-progress">
+                        In Progress
+                    </span>
+
+                </div>
+
+
+                <div class="complaint-item">
+
+                    <div class="complaint-icon">
+                        🚰
+                    </div>
+
+                    <div class="complaint-info">
+
+                        <h3>
+                            Water Leakage
+                        </h3>
+
+                        <p>
+                            Block B • Ground Floor
+                        </p>
+
+                    </div>
+
+                    <span class="status status-resolved">
+                        Resolved
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>
+                            Quick Actions
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="quick-action"
+                    onclick="showPage('report')">
+
+                    <div class="quick-action-icon">
+                        📝
+                    </div>
+
+                    <div class="quick-action-content">
+
+                        <strong>
+                            Report an Issue
+                        </strong>
+
+                        <p>
+                            Submit a new complaint
+                        </p>
+
+                    </div>
+
+                    →
+
+                </div>
+
+
+                <div
+                    class="quick-action"
+                    onclick="showPage('complaints')">
+
+                    <div class="quick-action-icon">
+                        📊
+                    </div>
+
+                    <div class="quick-action-content">
+
+                        <strong>
+                            Track Complaints
+                        </strong>
+
+                        <p>
+                            View complaint progress
+                        </p>
+
+                    </div>
+
+                    →
+
+                </div>
+
+
+                <div
+                    class="quick-action"
+                    onclick="showPage('profile')">
+
+                    <div class="quick-action-icon">
+                        👤
+                    </div>
+
+                    <div class="quick-action-content">
+
+                        <strong>
+                            My Profile
+                        </strong>
+
+                        <p>
+                            Manage your account
+                        </p>
+
+                    </div>
+
+                    →
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</section>
+
+
+<!-- =======================================================
+     REPORT ISSUE
+======================================================= -->
+
+<section id="report" class="page">
+
+    <main class="form-page">
+
+        <div class="page-heading">
+
+            <span
+                class="back"
+                onclick="showPage('dashboard')">
+
+                ← Back to Dashboard
+
+            </span>
+
+            <h1>
+                Report an Issue
+            </h1>
+
+            <p>
+                Provide details about the campus problem.
+            </p>
+
+        </div>
+
+
+        <div class="form-card">
+
+            <form id="complaintForm">
+
+                <h2>
+                    Issue Information
+                </h2>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Issue Title *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="issueTitle"
+                        placeholder="Example: Classroom fan not working"
+                        required>
+
+                </div>
+
+
+                <div class="two-columns">
+
+                    <div class="form-group">
+
+                        <label>
+                            Category *
+                        </label>
+
+                        <select
+                            id="category"
+                            required>
+
+                            <option value="">
+                                Select category
+                            </option>
+
+                            <option>
+                                Classroom
+                            </option>
+
+                            <option>
+                                Electrical
+                            </option>
+
+                            <option>
+                                Water & Plumbing
+                            </option>
+
+                            <option>
+                                Cleanliness
+                            </option>
+
+                            <option>
+                                Wi-Fi / Internet
+                            </option>
+
+                            <option>
+                                Furniture
+                            </option>
+
+                            <option>
+                                Restroom
+                            </option>
+
+                            <option>
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Priority
+                        </label>
+
+                        <select>
+
+                            <option>
+                                Low
+                            </option>
+
+                            <option selected>
+                                Medium
+                            </option>
+
+                            <option>
+                                High
+                            </option>
+
+                            <option>
+                                Urgent
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Location *
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="Example: Block A, Room 204"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Description *
+                    </label>
+
+                    <textarea
+                        rows="6"
+                        placeholder="Describe the problem in detail..."
+                        required></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Upload Image
+                    </label>
+
+                    <div class="upload-box">
+
+                        <div class="upload-icon">
+                            📷
+                        </div>
+
+                        <p>
+                            Upload an image of the issue
+                        </p>
+
+                        <small>
+                            JPG, PNG or JPEG
+                        </small>
+
+                        <input
+                            type="file"
+                            accept="image/*">
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="btn btn-outline"
+                        onclick="showPage('dashboard')">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary">
+
+                        Submit Complaint
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</section>
+
+
+<!-- =======================================================
+     COMPLAINTS
+======================================================= -->
+
+<section id="complaints" class="page">
+
+    <main class="container dashboard">
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <div class="dashboard-label">
+                    COMPLAINT MANAGEMENT
+                </div>
+
+                <h1>
+                    My Complaints
+                </h1>
+
+                <p>
+                    Track all the issues you have reported.
+                </p>
+
+            </div>
+
+            <button
+                class="btn btn-primary"
+                onclick="showPage('report')">
+
+                + New Complaint
+
+            </button>
+
+        </div>
+
+
+        <div class="filter-bar">
+
+            <input
+                type="text"
+                id="searchComplaint"
+                placeholder="🔍 Search complaints...">
+
+
+            <select id="statusFilter">
+
+                <option value="all">
+                    All Status
+                </option>
+
+                <option value="Pending">
+                    Pending
+                </option>
+
+                <option value="In Progress">
+                    In Progress
+                </option>
+
+                <option value="Resolved">
+                    Resolved
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="card table-card">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Complaint</th>
+                        <th>Category</th>
+                        <th>Location</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="complaintTable">
+
+                    <tr>
+
+                        <td>
+                            #CC001
+                        </td>
+
+                        <td>
+                            Classroom Light Not Working
+                        </td>
+
+                        <td>
+                            Electrical
+                        </td>
+
+                        <td>
+                            Block A - 204
+                        </td>
+
+                        <td>
+                            08 Sep 2026
+                        </td>
+
+                        <td>
+
+                            <span class="status status-pending">
+                                Pending
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <span
+                                class="view-link"
+                                onclick="showPage('details')">
+
+                                View
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            #CC002
+                        </td>
+
+                        <td>
+                            Wi-Fi Connectivity Issue
+                        </td>
+
+                        <td>
+                            Internet
+                        </td>
+
+                        <td>
+                            Library
+                        </td>
+
+                        <td>
+                            06 Sep 2026
+                        </td>
+
+                        <td>
+
+                            <span class="status status-progress">
+                                In Progress
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <span
+                                class="view-link"
+                                onclick="showPage('details')">
+
+                                View
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            #CC003
+                        </td>
+
+                        <td>
+                            Water Leakage
+                        </td>
+
+                        <td>
+                            Plumbing
+                        </td>
+
+                        <td>
+                            Block B
+                        </td>
+
+                        <td>
+                            02 Sep 2026
+                        </td>
+
+                        <td>
+
+                            <span class="status status-resolved">
+                                Resolved
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <span
+                                class="view-link"
+                                onclick="showPage('details')">
+
+                                View
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</section>
+
+
+<!-- =======================================================
+     COMPLAINT DETAILS
+======================================================= -->
+
+<section id="details" class="page">
+
+    <main class="container dashboard">
+
+        <div class="page-heading">
+
+            <span
+                class="back"
+                onclick="showPage('complaints')">
+
+                ← Back to Complaints
+
+            </span>
+
+            <h1>
+                Complaint #CC001
+            </h1>
+
+            <p>
+                Submitted on 08 September 2026
+            </p>
+
+        </div>
+
+
+        <div class="details-grid">
+
+
+            <div class="card">
+
+                <div class="detail-title">
+
+                    <div class="detail-icon">
+                        💡
+                    </div>
+
+                    <div class="detail-title-content">
+
+                        <h2>
+                            Classroom Light Not Working
+                        </h2>
+
+                        <p>
+                            Electrical • Block A - Room 204
+                        </p>
+
+                    </div>
+
+                    <span class="status status-pending">
+                        Pending
+                    </span>
+
+                </div>
+
+
+                <hr style="border-color:#263247">
+
+
+                <h3 style="margin-top:20px">
+                    Description
+                </h3>
+
+
+                <p class="description">
+
+                    The ceiling light in classroom A-204 is not
+                    working. The issue affects visibility during
+                    evening classes.
+
+                </p>
+
+
+                <div class="detail-info">
+
+                    <div>
+
+                        <span>
+                            CATEGORY
+                        </span>
+
+                        <strong>
+                            Electrical
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            PRIORITY
+                        </span>
+
+                        <strong>
+                            Medium
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            LOCATION
+                        </span>
+
+                        <strong>
+                            Block A - Room 204
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            REPORTED BY
+                        </span>
+
+                        <strong>
+                            Student
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>
+                    Complaint Progress
+                </h2>
+
+
+                <div class="timeline">
+
+
+                    <div class="timeline-item completed">
+
+                        <div class="timeline-dot">
+                            ✓
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <h3>
+                                Complaint Submitted
+                            </h3>
+
+                            <p>
+                                08 Sep 2026 • 10:30 AM
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item current">
+
+                        <div class="timeline-dot">
+                            2
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <h3>
+                                Under Review
+                            </h3>
+
+                            <p>
+                                Waiting for administrator review
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot">
+                            3
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <h3>
+                                In Progress
+                            </h3>
+
+                            <p>
+                                Maintenance team will handle the issue
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot">
+                            4
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <h3>
+                                Resolved
+                            </h3>
+
+                            <p>
+                                Issue will be marked resolved
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</section>
+
+
+<!-- =======================================================
+     PROFILE
+======================================================= -->
+
+<section id="profile" class="page">
+
+    <main class="container dashboard">
+
+        <div class="page-heading">
+
+            <div class="dashboard-label">
+                ACCOUNT
+            </div>
+
+            <h1>
+                My Profile
+            </h1>
+
+            <p>
+                Manage your CampusCare account.
+            </p>
+
+        </div>
+
+
+        <div class="card profile-card">
+
+            <div class="profile-header">
+
+                <div class="avatar">
+                    U
+                </div>
+
+                <div>
+
+                    <h2>
+                        Student User
+                    </h2>
+
+                    <p>
+                        Student • CampusCare Member
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="two-columns">
+
+                <div class="form-group">
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="Enter your name">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        placeholder="Enter your email">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Department
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="Computer Science Engineering">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Year
+                    </label>
+
+                    <select>
+
+                        <option>
+                            First Year
+                        </option>
+
+                        <option>
+                            Second Year
+                        </option>
+
+                        <option selected>
+                            Third Year
+                        </option>
+
+                        <option>
+                            Fourth Year
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                onclick="showToast('Profile saved successfully')">
+
+                Save Changes
+
+            </button>
+
+        </div>
+
+    </main>
+
+</section>
+
+
+<!-- =======================================================
+     ADMIN DASHBOARD
+======================================================= -->
+
+<section id="admin" class="page">
+
+    <main class="container dashboard">
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <div class="dashboard-label">
+                    ADMINISTRATION
+                </div>
+
+                <h1>
+                    Campus Overview
+                </h1>
+
+                <p>
+                    Monitor and manage campus complaints.
+                </p>
+
+            </div>
+
+            <span class="admin-badge">
+                ADMIN PANEL
+            </span>
+
+        </div>
+
+
+        <div class="dashboard-stats">
+
+            <div class="dash-stat">
+
+                <div class="dash-icon icon-blue">
+                    📋
+                </div>
+
+                <div>
+
+                    <h2>
+                        128
+                    </h2>
+
+                    <p>
+                        Total Complaints
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="dash-stat">
+
+                <div class="dash-icon icon-yellow">
+                    ⏳
+                </div>
+
+                <div>
+
+                    <h2>
+                        18
+                    </h2>
+
+                    <p>
+                        Pending
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="dash-stat">
+
+                <div class="dash-icon icon-violet">
+                    🔧
+                </div>
+
+                <div>
+
+                    <h2>
+                        14
+                    </h2>
+
+                    <p>
+                        In Progress
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="dash-stat">
+
+                <div class="dash-icon icon-green">
+                    ✓
+                </div>
+
+                <div>
+
+                    <h2>
+                        96
+                    </h2>
+
+                    <p>
+                        Resolved
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card table-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Recent Complaints
+                    </h2>
+
+                    <p>
+                        Review and manage reported issues.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Complaint</th>
+                        <th>Student</th>
+                        <th>Category</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            #CC001
+                        </td>
+
+                        <td>
+                            Classroom Light Not Working
+                        </td>
+
+                        <td>
+                            Student
+                        </td>
+
+                        <td>
+                            Electrical
+                        </td>
+
+                        <td style="color:#fbbf24">
+                            Medium
+                        </td>
+
+                        <td>
+                            <span class="status status-pending">
+                                Pending
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="btn btn-outline"
+                                style="padding:7px 12px;font-size:11px"
+                                onclick="showToast('Complaint opened')">
+
+                                Manage
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            #CC002
+                        </td>
+
+                        <td>
+                            Wi-Fi Connectivity Issue
+                        </td>
+
+                        <td>
+                            Student
+                        </td>
+
+                        <td>
+                            Internet
+                        </td>
+
+                        <td style="color:#fb7185">
+                            High
+                        </td>
+
+                        <td>
+                            <span class="status status-progress">
+                                In Progress
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="btn btn-outline"
+                                style="padding:7px 12px;font-size:11px"
+                                onclick="showToast('Complaint opened')">
+
+                                Manage
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            #CC003
+                        </td>
+
+                        <td>
+                            Water Leakage
+                        </td>
+
+                        <td>
+                            Student
+                        </td>
+
+                        <td>
+                            Plumbing
+                        </td>
+
+                        <td style="color:#fb7185">
+                            High
+                        </td>
+
+                        <td>
+                            <span class="status status-resolved">
+                                Resolved
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="btn btn-outline"
+                                style="padding:7px 12px;font-size:11px"
+                                onclick="showToast('Complaint details opened')">
+
+                                View
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</section>
+
+
+<!-- TOAST -->
+
+<div id="toast" class="toast"></div>
+
+
+<!-- =======================================================
+     JAVASCRIPT
+======================================================= -->
+
+<script>
+
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
+
+function showPage(pageId){
+
+    document.querySelectorAll(".page").forEach(function(page){
+
+        page.classList.remove("active");
+
+    });
+
+
+    const selectedPage =
+        document.getElementById(pageId);
+
+
+    if(selectedPage){
+
+        selectedPage.classList.add("active");
+
+    }
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   FEATURES SCROLL
+========================================================= */
+
+function scrollToFeatures(){
+
+    showPage("home");
+
+    setTimeout(function(){
+
+        const features =
+            document.getElementById("features");
+
+        if(features){
+
+            features.scrollIntoView({
+                behavior:"smooth"
+            });
+
+        }
+
+    },100);
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+document
+.getElementById("loginForm")
+.addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+
+    const email =
+        document.getElementById("loginEmail").value.trim();
+
+
+    const password =
+        document.getElementById("loginPassword").value.trim();
+
+
+    if(email === "" || password === ""){
+
+        showToast("Please enter your email and password.");
+
+        return;
+
+    }
+
+
+    /*
+        Frontend stage only.
+
+        Real authentication will be added
+        when the backend is created.
+    */
+
+    showToast(
+        "Login interface ready for backend integration."
+    );
+
+
+    setTimeout(function(){
+
+        showPage("dashboard");
+
+    },1000);
+
+});
+
+
+/* =========================================================
+   REGISTER
+========================================================= */
+
+document
+.getElementById("registerForm")
+.addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+
+    showToast(
+        "Registration form submitted successfully."
+    );
+
+
+    setTimeout(function(){
+
+        showPage("login");
+
+    },1000);
+
+});
+
+
+/* =========================================================
+   COMPLAINT FORM
+========================================================= */
+
+document
+.getElementById("complaintForm")
+.addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+
+    const title =
+        document.getElementById("issueTitle").value.trim();
+
+
+    const category =
+        document.getElementById("category").value;
+
+
+    if(title === "" || category === ""){
+
+        showToast(
+            "Please complete the required fields."
+        );
+
+        return;
+
+    }
+
+
+    showToast(
+        "Complaint submitted successfully."
+    );
+
+
+    document
+    .getElementById("complaintForm")
+    .reset();
+
+
+    setTimeout(function(){
+
+        showPage("complaints");
+
+    },1000);
+
+});
+
+
+/* =========================================================
+   SEARCH COMPLAINTS
+========================================================= */
+
+document
+.getElementById("searchComplaint")
+.addEventListener("keyup",function(){
+
+    const search =
+        this.value.toLowerCase();
+
+
+    const rows =
+        document.querySelectorAll(
+            "#complaintTable tr"
+        );
+
+
+    rows.forEach(function(row){
+
+        const text =
+            row.innerText.toLowerCase();
+
+
+        row.style.display =
+            text.includes(search)
+            ? ""
+            : "none";
+
+    });
+
+});
+
+
+/* =========================================================
+   STATUS FILTER
+========================================================= */
+
+document
+.getElementById("statusFilter")
+.addEventListener("change",function(){
+
+    const selected =
+        this.value;
+
+
+    const rows =
+        document.querySelectorAll(
+            "#complaintTable tr"
+        );
+
+
+    rows.forEach(function(row){
+
+        if(selected === "all"){
+
+            row.style.display = "";
+
+            return;
+
+        }
+
+
+        const text =
+            row.innerText;
+
+
+        row.style.display =
+            text.includes(selected)
+            ? ""
+            : "none";
+
+    });
+
+});
+
+
+/* =========================================================
+   TOAST MESSAGE
+========================================================= */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.innerText =
+        message;
+
+
+    toast.classList.add("show");
+
+
+    setTimeout(function(){
+
+        toast.classList.remove("show");
+
+    },3000);
+
+}
+
+</script>
+
+</body>
+</html>
